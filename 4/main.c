@@ -1,4 +1,3 @@
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -65,7 +64,7 @@ int solve(card_t* card) {
         return 0;
     }
     // 2^(n-1)
-    return 1 << (out-1);
+    return 1 << (out - 1);
 }
 
 int main() {
@@ -87,27 +86,27 @@ int main() {
     /**/
     // Part 2
 #define MAX_GAMES 193
-    card_t *games[MAX_GAMES] = {NULL};
+    card_t* games[MAX_GAMES] = {NULL};
     int cardCopies[MAX_GAMES] = {0};
-    for(int i = 0; i < MAX_GAMES; i++) {
+    for (int i = 0; i < MAX_GAMES; i++) {
         games[i] = read_card();
-        if(games[i] == NULL) {
+        if (games[i] == NULL) {
             break;
         }
         cardCopies[i] = 1;
     }
-    for(int i = 0; i < MAX_GAMES; i++) {
-        if(games[i] == NULL) {
+    for (int i = 0; i < MAX_GAMES; i++) {
+        if (games[i] == NULL) {
             break;
         }
         int winning = winnings(games[i]);
-        while(winning > 0) {
+        while (winning > 0) {
             cardCopies[i + winning] += cardCopies[i];
             winning--;
         }
     }
     int totalCard = 0;
-    for(int i = 0; i < MAX_GAMES; i++) {
+    for (int i = 0; i < MAX_GAMES; i++) {
         totalCard += cardCopies[i];
     }
     printf("%d\n", totalCard);
