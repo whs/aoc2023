@@ -99,7 +99,7 @@ fn main() {
 
     println!("total pairs: {}", ranges.len());
 
-    let problem2 = ranges.into_iter()
+    let problem2 = ranges.into_par_iter()
         .map(|rng| {
             rng.into_iter().map(|v| walk_ranges(&problem.maps, v)).min().unwrap()
         })
