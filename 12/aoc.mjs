@@ -99,32 +99,16 @@ function cachedSolve1(map, unknowns) {
 		return cache[key]
 	}
 	let out = solve1(map, unknowns)
-	// cache[key] = out
-	// cheat path
-	cache[key] = new Array(out.length).fill("")
+	cache[key] = out
 	return out
 }
 
-// let out1 = problems.map((p) => {
-// 	let out = cachedSolve1(p.map, p.unknowns)
-// 	console.log("Problem:")
-// 	console.log(p)
-// 	console.log(`Solutions ${out.length}`)
-// 	console.log(out)
-// 	return out.length
-// }).reduce((a, b) => a+b, 0)
-// console.log(out1)
-
-let out2 = problems.map((p) => {
-	let map = ""
-	let unknowns = []
-	for(let i = 0; i < 5; i++){
-		map += p.map + "?"
-		unknowns.push(...p.unknowns)
-	}
-	map = map.slice(0, map.length-1)
-	let out = cachedSolve1(map, unknowns)
-	console.log(`${p.map}: ${out.length}`)
+let out1 = problems.map((p) => {
+	let out = cachedSolve1(p.map, p.unknowns)
+	console.log("Problem:")
+	console.log(p)
+	console.log(`Solutions ${out.length}`)
+	console.log(out)
 	return out.length
 }).reduce((a, b) => a+b, 0)
-console.log(out2)
+console.log(out1)
